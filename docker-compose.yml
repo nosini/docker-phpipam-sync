@@ -1,0 +1,13 @@
+services:
+  docker-phpipam-sync:
+    container_name: phpipam-sync
+    build: .
+    # image: docker-phpipam-sync:latest   # use this after building
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro   # read-only Docker socket
+    environment:
+      PHPIPAM_URL: "https://phpipam.${DOMAIN}.${TLD}"   # ← your phpIPAM base URL
+      PHPIPAM_APP_ID: "docker"                # ← your API app ID
+      PHPIPAM_TOKEN: ${PHPIPAM_TOKEN}     # ← your static app token
+      LOG_LEVEL: "INFO"                  # DEBUG for verbose output
