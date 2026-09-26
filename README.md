@@ -37,6 +37,10 @@ docker compose up -d --build
 docker compose logs -f
 ```
 
+The build context is the Codeberg repository (`main` branch), so only
+`docker-compose.yml` is needed on the host and local changes to the code are
+not picked up. To build from a local checkout instead, set `build: .`.
+
 ---
 
 ## Running directly with Python
