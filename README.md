@@ -82,3 +82,16 @@ The daemon tries to find the right phpIPAM subnet in two steps:
 2. If no exact match, most-specific subnet that *contains* the IP is used.
 
 If no subnet is found for a network, a warning is logged and that IP is skipped.
+
+---
+
+## Tests
+
+The tests run against in-memory fakes of Docker and phpIPAM, so neither needs
+to be installed or reachable; only the Python packages from
+`requirements.txt` are required.
+
+```bash
+pip install -r requirements.txt
+python -m unittest -v
+```
