@@ -29,7 +29,7 @@ container IPs in phpIPAM via its REST API.
 ## Running with Docker Compose (recommended)
 
 ```bash
-# 1. Edit docker-compose.yml and fill in your phpIPAM URL, app ID, and token
+# 1. Edit compose.yaml and fill in your phpIPAM URL, app ID, and token
 # 2. Build and start
 docker compose up -d --build
 
@@ -38,7 +38,7 @@ docker compose logs -f
 ```
 
 The build context is the Codeberg repository (`main` branch), so only
-`docker-compose.yml` is needed on the host and local changes to the code are
+`compose.yaml` is needed on the host and local changes to the code are
 not picked up. To build from a local checkout instead, set `build: .`.
 
 ---
