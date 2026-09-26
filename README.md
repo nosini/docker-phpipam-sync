@@ -9,7 +9,7 @@ container IPs in phpIPAM via its REST API.
 |---|---|
 | Container **starts** | Registers all container IPs in the matching phpIPAM subnet |
 | Container **stops/dies** | Removes IPs from phpIPAM — unless another running container still holds the same IP |
-| **Daemon starts** | Syncs all currently running containers first |
+| **Daemon starts** | Syncs all currently running containers first, then removes its own records whose container is gone |
 
 ---
 
@@ -61,6 +61,16 @@ python docker_phpipam_sync.py
 | `PHPIPAM_APP_ID` | `docker` | API application ID |
 | `PHPIPAM_TOKEN` | — | Static app token from phpIPAM |
 | `LOG_LEVEL` | `INFO` | `DEBUG` for verbose, `WARNING` for quiet |
+| `SYNC_INSTANCE_ID` | Docker engine hostname | Identifies this host in the note of each record it owns. Must be unique per Docker host when several hosts share one phpIPAM |
+
+## Record ownership
+
+Every record the daemon creates gets the note
+`Managed by docker-phpipam-sync (<SYNC_INSTANCE_ID>)`. The daemon only ever
+deletes records carrying its own host's note, so several Docker hosts can
+share a phpIPAM instance. Records written by older versions (note without the
+host part) are re-adopted and re-stamped when a running container holds their
+IP; stale ones must be removed by hand.
 
 ---
 
