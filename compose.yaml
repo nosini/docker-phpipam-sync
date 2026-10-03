@@ -1,7 +1,7 @@
 services:
   docker-phpipam-sync:
     container_name: phpipam-sync
-    build: https://codeberg.org/nosini/docker-phpipam-sync.git#main   # builds from the repo; use `.` for a local checkout
+    build: https://github.com/nosini/docker-phpipam-sync.git#main   # builds from the repo; use `.` for a local checkout
     # image: docker-phpipam-sync:latest   # use this after building
     restart: unless-stopped
     volumes:

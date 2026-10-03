@@ -37,7 +37,7 @@ docker compose up -d --build
 docker compose logs -f
 ```
 
-The build context is the Codeberg repository (`main` branch), so only
+The build context is the GitHub repository (`main` branch), so only
 `compose.yaml` is needed on the host and local changes to the code are
 not picked up. To build from a local checkout instead, set `build: .`.
 
